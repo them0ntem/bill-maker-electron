@@ -1,0 +1,28 @@
+h1 {
+	line-height: 100px;
+	color: #29d;
+	font-size: 40px;
+}
+
+.fixed-panel {
+	max-height: 450px;
+	min-height: 400px;
+	overflow-y: auto;
+}
+
+.panel-table {
+	padding: 0;
+}
+
+.col-md-2, .col-md-9 {
+	padding: 0;
+}
+
+.col-md-2 .panel-body {
+	padding: 5px;
+}
+
+.panel-table table {
+	margin-bottom: 0;
+	font-size: inherit;
+}

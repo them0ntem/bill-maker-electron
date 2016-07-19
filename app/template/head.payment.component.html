@@ -1,0 +1,34 @@
+<div style="padding: 30px">
+	<h1 class="text-center">
+	<i class="glyphicon glyphicon-credit-card"></i>
+		Payment
+	</h1>
+
+	<div class="panel panel-default" id="payments-detail">
+		<div class="panel-heading">
+			Payments Detail
+		</div>
+		<div class="panel-body panel-table fixed-panel">
+			<table class="table table-striped table-hover">
+				<thead>
+				<tr>
+					<th class="col-md-1">#</th>
+					<th class="col-md-5">Description</th>
+					<th class="col-md-2">Amount</th>
+					<th class="col-md-2">Method</th>
+					<th class="col-md-2">Date</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr *ngFor="let payment of payments; let i = index;">
+					<td>{{i+1}}</td>
+					<td>{{payment.description}}</td>
+					<td>{{payment.amount_received}}</td>
+					<td>{{payment.method}}</td>
+					<td>{{payment.date | date}}</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

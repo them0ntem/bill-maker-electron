@@ -1,0 +1,39 @@
+<div class="container-fluid">
+	<header_jumbotron [title]="'Delete Old Receipt'"></header_jumbotron>
+
+	<div class="alert alert-dismissible alert-success" *ngIf="paymentDeleted">
+		<button type="button" class="close" data-dismiss="alert" style="outline: none">×</button>
+		<strong>Updated!</strong> Payment Receipt Deleted Successfully.
+	</div>
+
+	<div class="alert alert-dismissible alert-danger" *ngIf="errorMsg && !paymentFound">
+		<button type="button" class="close" data-dismiss="alert" style="outline: none">×</button>
+		<strong>Error!</strong> Problem connecting to database! Contact Developer.
+	</div>
+
+	<div class="alert alert-dismissible alert-warning" *ngIf="errorMsg && paymentFound">
+		<button type="button" class="close" data-dismiss="alert" style="outline: none">×</button>
+		<strong>Warning!</strong> Payment Receipt not found.
+	</div>
+	<div class="well well-lg clearfix">
+		<form class="form-horizontal col-md-8 col-md-offset-2" [formGroup]="paymentForm" (ngSubmit)="deletePayment()" novalidate>
+			<fieldset>
+				<div class="form-group">
+					<div class="col-md-12">
+						<label for="inputPaymentIndex" class="control-label">Payment Receipt No.</label>
+						<input type="text" class="form-control" name="total_amount" formControlName="payment_index"
+						       id="inputPaymentIndex">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-12">
+						<button type="submit" class="btn btn-primary btn-raised" [disabled]="!paymentForm.valid">
+							<i class="glyphicon glyphicon-trash"></i> Delete Payment Receipt
+						</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,23 @@
+.basic-detail .row {
+	line-height: 2em;
+}
+
+.basic-detail .col-md-3 {
+	font-weight: bold;
+	padding-right: 0;
+}
+
+.fixed-panel {
+	max-height: 200px;
+	min-height: 150px;
+	overflow-y: auto;
+}
+
+.panel-table {
+	padding: 0;
+}
+
+.panel-table table {
+	margin-bottom: 0;
+	font-size: inherit;
+}

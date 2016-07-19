@@ -1,0 +1,76 @@
+<div style="padding: 30px">
+	<h1 class="text-center">
+		<i class="glyphicon glyphicon-cog"></i>
+		Settings
+	</h1>
+	<div class="panel panel-default col-md-9">
+		<div class="panel-heading">
+			Company Detail
+		</div>
+		<div class="panel-body">
+			<form #companyForm="ngForm" (ngSubmit)="saveCompanyDetail()">
+				<fieldset>
+					<div class="form-group clearfix">
+						<label for="inputCompanyName" class="col-md-12">Name</label>
+						<div class="col-md-12">
+							<input type="text" class="form-control" [(ngModel)]="company.name" name="company_name"
+							       id="inputCompanyName" required>
+						</div>
+					</div>
+					<div class="form-group clearfix">
+						<label for="inputCompanyAddress" class="col-md-12">Address</label>
+						<div class="col-md-12">
+							<textarea class="form-control" rows="5" [(ngModel)]="company.address" name="company_address"
+							          id="inputCompanyAddress" required></textarea>
+						</div>
+					</div>
+					<div class="form-group clearfix">
+						<label for="inputCompanyPanNo" class="col-md-12">PanNo</label>
+						<div class="col-md-12">
+							<input type="text" class="form-control" [(ngModel)]="company.pan_no" name="company_pan_no"
+							       id="inputCompanyPanNo" required>
+						</div>
+					</div>
+					<div class="form-group clearfix">
+						<label for="inputCompanyMobileNo" class="col-md-12">MobileNo</label>
+						<div class="col-md-12">
+							<input type="text" class="form-control" [(ngModel)]="company.mobile_no" name="company_mobile_no"
+							       id="inputCompanyMobileNo" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary btn-raised" [disabled]="!companyForm.valid">Save
+							</button>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	<div class="panel panel-default col-md-2 col-md-offset-1">
+		<div class="panel-heading">
+			Sequence Detail
+		</div>
+		<div class="panel-body">
+			<form>
+				<fieldset>
+					<div class="form-group clearfix">
+						<label for="inputBillSequence" class="col-md-12">Bill</label>
+						<div class="col-md-12">
+							<input type="text" class="form-control" [ngModel]="bill" name="bill" id="inputBillSequence" disabled>
+						</div>
+					</div>
+					<div class="form-group clearfix">
+						<label for="inputPaymentSequence" class="col-md-12">Payment</label>
+						<div class="col-md-12">
+							<input type="text" class="form-control" [ngModel]="payment" name="payment" id="inputPaymentSequence"
+							       disabled>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,10 @@
+{
+	"globalDependencies": {
+		"core-js": "registry:dt/core-js#0.0.0+20160602141332",
+		"github-electron": "registry:dt/github-electron#1.2.5+20160624085047",
+		"jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
+		"jquery": "registry:dt/jquery#1.10.0+20160704162008",
+		"node": "registry:dt/node#6.0.0+20160621231320",
+		"pouchdb": "github:DefinitelyTyped/DefinitelyTyped/pouchDB/pouch.d.ts#93ca28cc11062e4aeba9ce8c5fccea490e57f919"
+	}
+}

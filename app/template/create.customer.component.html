@@ -1,0 +1,57 @@
+<div class="container-fluid">
+	<header_jumbotron [title]="'Create Customer'"></header_jumbotron>
+
+	<div class="alert alert-dismissible alert-success" *ngIf="formSubmitted && successfullyCreated">
+		<button type="button" class="close" data-dismiss="alert" style="outline: none">×</button>
+		<strong>Created!</strong> Customer Created Successfully
+	</div>
+	<div class="alert alert-dismissible alert-danger" *ngIf="formSubmitted && !successfullyCreated">
+		<button type="button" class="close" data-dismiss="alert" style="outline: none">×</button>
+		<strong>Error!</strong> Problem connecting to database! Contact Developer
+	</div>
+
+	<form class="form-horizontal" [formGroup]="customerForm" (ngSubmit)="saveUser()" novalidate>
+		<fieldset>
+			<div class="form-group">
+				<label for="inputName" class="col-md-2 control-label">Name</label>
+
+				<div class="col-md-10">
+					<input type="text" class="form-control" [(ngModel)]="user.name" formControlName="name" id="inputName"
+					       placeholder="Name"
+					       required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputMobile" class="col-md-2 control-label">Mobile No.</label>
+
+				<div class="col-md-10">
+					<input type="text" class="form-control" [(ngModel)]="user.mobile_no" formControlName="mobile_no"
+					       id="inputMobile"
+					       placeholder="Mobile No." required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputAddress" class="col-md-2 control-label">Address</label>
+
+				<div class="col-md-10">
+					<textarea class="form-control" [(ngModel)]="user.address" formControlName="address" rows="3" id="inputAddress"
+					          required></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputTin" class="col-md-2 control-label">Tin No.</label>
+
+				<div class="col-md-10">
+					<input type="text" class="form-control" [(ngModel)]="user.tin_no" formControlName="tin_no" id="inputTin"
+					       placeholder="Tin No." required>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-10 col-md-offset-2">
+					<button type="submit" class="btn btn-primary btn-raised" [disabled]="!customerForm.valid">Submit
+					</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>

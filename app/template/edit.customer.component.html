@@ -1,0 +1,69 @@
+<div class="container-fluid">
+	<header_jumbotron [title]="'Edit Customer'"></header_jumbotron>
+
+	<div class="alert alert-dismissible alert-success" *ngIf="formSubmitted && !errorMsg">
+		<button type="button" class="close" data-dismiss="alert" style="outline: none">×</button>
+		<strong>Updated!</strong> Customer Updated Successfully.
+	</div>
+	<div class="alert alert-dismissible alert-danger" *ngIf="errorMsg">
+		<button type="button" class="close" data-dismiss="alert" style="outline: none">×</button>
+		<strong>Error!</strong> Problem connecting to database! Contact Developer.
+	</div>
+
+	<form class="form-horizontal" [formGroup]="customerForm" (ngSubmit)="updateUser()" novalidate>
+		<fieldset>
+			<div class="form-group">
+				<label for="selectName" class="col-md-2 control-label">Select Customer</label>
+
+				<div class="col-md-10">
+					<select id="selectName" class="form-control" [(ngModel)]="selectUser" name="selectUser"
+					        (change)="updateField($event.target.value)">
+						<option [value]="-1" disabled>Select Customer</option>
+						<option *ngFor="let user of users; let i = index;" [value]="i">{{user.name}}</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputName" class="col-md-2 control-label">Name</label>
+
+				<div class="col-md-10">
+					<input type="text" class="form-control" [(ngModel)]="user.name" formControlName="name"
+					       id="inputName"
+					       placeholder="Name">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputMobile" class="col-md-2 control-label">Mobile No.</label>
+
+				<div class="col-md-10">
+					<input type="text" class="form-control" [(ngModel)]="user.mobile_no" formControlName="mobile_no"
+					       id="inputMobile"
+					       placeholder="Mobile No.">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputAddress" class="col-md-2 control-label">Address</label>
+
+				<div class="col-md-10">
+					<textarea class="form-control" [(ngModel)]="user.address" formControlName="address" rows="3" id="inputAddress"
+					></textarea>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputTin" class="col-md-2 control-label">Tin No.</label>
+
+				<div class="col-md-10">
+					<input type="text" class="form-control" [(ngModel)]="user.tin_no" formControlName="tin_no" id="inputTin"
+					       placeholder="Tin No.">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-10 col-md-offset-2">
+					<button type="submit" class="btn btn-primary btn-raised" [disabled]="!customerForm.valid">Submit
+					</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>

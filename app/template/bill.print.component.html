@@ -1,0 +1,62 @@
+<div id="body">
+	<div id="print-btn">
+		<button class="btn btn-raised btn-primary" (click)="printBtn()">Print Bill</button>
+	</div>
+	<div *ngIf="!errorMsg" id="bill">
+		<header class="clearfix">
+			<div id="logo"><img src="app/asset/logo.png"></div>
+			<div id="company"><h2 class="name">{{company.name}}</h2>
+				<div style="white-space: pre-line;">{{company.address}}</div>
+				<div>Pan No. : {{company.pan_no}}</div>
+				<div *ngFor="let mobile of company.mobile_no">#{{mobile}}</div>
+			</div>
+		</header>
+		<main>
+			<div id="details" class="clearfix">
+				<div id="client">
+					<div class="to">Invoice To:</div>
+					<h2 class="name">{{user.name}}</h2>
+					<div class="address"></div>
+					<div></div>
+				</div>
+				<div id="invoice">
+					<h1>Invoice No. {{bill.index}}</h1>
+					<div class="date">Date of Invoice: {{bill.date | date}}</div>
+				</div>
+			</div>
+			<table class="table table-bordered table-striped">
+				<thead>
+				<tr>
+					<th class="no">S. No.</th>
+					<th class="desc">Particulars</th>
+					<th class="total">Amount</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr *ngFor="let bill_item of bill.bill_items; let i = index;">
+					<td class="no">{{i+1}}.</td>
+					<td class="desc">{{bill_item.particulars}}</td>
+					<td class="total">&#8377; {{bill_item.amount}}</td>
+				</tr>
+				</tbody>
+				<tfoot>
+				<tr>
+					<td></td>
+					<td>Total</td>
+					<td>&#8377; {{bill.total_amount}}</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="2">IN WORDS: {{bill.total_amount | toWords | uppercase}}</td>
+				</tr>
+				</tfoot>
+			</table>
+			<div id="thanks">Thank you!</div>
+			<div id="notices">
+				<div>Narration:</div>
+				<div class="notice" style="white-space: pre-line"></div>
+			</div>
+		</main>
+		<footer> Invoice was created on a computer and is valid without the signature and seal.</footer>
+	</div>
+</div>

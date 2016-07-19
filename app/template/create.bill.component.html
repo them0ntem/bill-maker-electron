@@ -1,0 +1,92 @@
+<div class="container-fluid">
+	<header_jumbotron [title]="'Create Bill'"></header_jumbotron>
+
+	<div class="alert alert-dismissible alert-success" *ngIf="formSubmitted && !errorMsg">
+		<button type="button" class="close" data-dismiss="alert" style="outline: none">×</button>
+		<strong>Updated!</strong> Bill Created Successfully.
+	</div>
+	<div class="alert alert-dismissible alert-danger" *ngIf="errorMsg">
+		<button type="button" class="close" data-dismiss="alert" style="outline: none">×</button>
+		<strong>Error!</strong> Problem connecting to database! Contact Developer.
+	</div>
+
+	<form>
+		<fieldset>
+			<div class="form-group">
+				<div class="col-md-8">
+					<select id="selectUser" class="form-control" name="selectUser" [(ngModel)]="selectUser"
+					        (change)="updateField($event.target.value)" title="selectUser" required>
+						<option [value]="-1" disabled>Select Customer</option>
+						<option *ngFor="let user of users; let i = index;" [value]="i">{{user.name}}</option>
+					</select>
+				</div>
+				<div class="col-md-4">
+					<input class="form-control" value="Money Due: {{user.money_due}}" disabled>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+	<form class="form-horizontal" #billForm="ngForm" (ngSubmit)="saveBill()" *ngIf="active" novalidate>
+		<div class="panel panel-default" id="bill-detail">
+			<div class="panel-heading">
+				Bills Detail
+			</div>
+			<div class="panel-body panel-table fixed-panel">
+				<table class="table table-striped table-hover">
+					<thead>
+					<tr>
+						<th class="col-md-1">#</th>
+						<th class="col-md-4">Particular</th>
+						<th class="col-md-2">Amount</th>
+						<th class="col-md-5">Descrption</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr *ngFor="let bill_item of bill.bill_items; let i = index;">
+						<td>{{i+1}}</td>
+						<td><input type="text" class="form-control" [(ngModel)]="bill_item.particulars" name="particulars_{{i}}"></td>
+						<td><input type="text" class="form-control" (keyup)="totalAmount()" [(ngModel)]="bill_item.amount"
+						           name="amount_{{i}}"
+						           pattern="([0-9]{1,10})" required></td>
+						<td><input type="text" class="form-control" [(ngModel)]="bill_item.description" name="description_{{i}}"></td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="panel-footer clearfix">
+				<button type="button" class="btn btn-primary btn-raised pull-right" (click)="addRow()">Add Row</button>
+			</div>
+		</div>
+		<fieldset>
+			<div class="form-group">
+				<label for="inputDescription" class="col-md-12">Description</label>
+
+				<div class="col-md-12">
+					<textarea class="form-control" [(ngModel)]="bill.description" formControlName="description" rows="3"
+					          id="inputDescription"
+					          required></textarea>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-6">
+					<label for="inputDate" class="control-label">Date</label>
+					<input type="date" class="form-control" [(ngModel)]="bill.date" name="date" id="inputDate" required>
+				</div>
+
+				<div class="col-md-6">
+					<label for="totalAmount" class="control-label">Total Amount</label>
+					<input type="text" class="form-control" [ngModel]="bill.total_amount" name="total_amount" id="totalAmount"
+					       disabled>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-primary btn-raised" [disabled]="!billForm.valid">Save
+					</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>

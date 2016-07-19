@@ -1,0 +1,112 @@
+<div class="container-fluid">
+	<header_jumbotron [title]="'Detail Customer'"></header_jumbotron>
+
+	<div class="alert alert-dismissible alert-success" *ngIf="formSubmitted && successfullyCreated">
+		<button type="button" class="close" data-dismiss="alert" style="outline: none">×</button>
+		<strong>Created!</strong> Customer Created Successfully
+	</div>
+	<div class="alert alert-dismissible alert-danger" *ngIf="formSubmitted && !successfullyCreated">
+		<button type="button" class="close" data-dismiss="alert" style="outline: none">×</button>
+		<strong>Error!</strong> Problem connecting to database! Contact Developer
+	</div>
+	<form>
+		<fieldset>
+			<div class="form-group">
+				<div class="col-md-12">
+					<select id="selectName" class="form-control" name="selectUser" [(ngModel)]="selectUser"
+					        (change)="updateField($event.target.value)">
+						<option [value]="-1" disabled>Select Customer</option>
+						<option *ngFor="let user of users; let i = index;" [value]="i">{{user.name}}</option>
+					</select>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+
+	<div class="panel panel-default basic-detail">
+		<div class="panel-heading">Basic Details</div>
+		<div class="panel-body">
+			<div class="col-md-6">
+				<div class="row">
+					<div class="col-md-3">Name</div>
+					<div class="col-md-1">:</div>
+					<div class="col-md-8">{{user.name}}</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">Mobile</div>
+					<div class="col-md-1">:</div>
+					<div class="col-md-8">{{user.mobile_no}}</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">Tin No</div>
+					<div class="col-md-1">:</div>
+					<div class="col-md-8">{{user.tin_no}}</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">Money Due</div>
+					<div class="col-md-1">:</div>
+					<div class="col-md-8">{{user.money_due}}</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="row">
+					<div class="col-md-3">Address</div>
+					<div class="col-md-1">:</div>
+					<div class="col-md-8" style="white-space: pre-line">{{user.address}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-default" id="bill-detail">
+		<div class="panel-heading">
+			Bills Detail
+		</div>
+		<div class="panel-body panel-table fixed-panel">
+			<table class="table table-striped table-hover">
+				<thead>
+				<tr>
+					<th class="col-md-1">#</th>
+					<th class="col-md-6">Description</th>
+					<th class="col-md-2">Total Amount</th>
+					<th class="col-md-3">Date</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr *ngFor="let bill of user.bills; let i = index;">
+					<td>{{i+1}}</td>
+					<td>{{bill.description}}</td>
+					<td>{{bill.total_amount}}</td>
+					<td>{{bill.date | date:fullDate}}</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="panel panel-default" id="payments-detail">
+		<div class="panel-heading">
+			Payments Detail
+		</div>
+		<div class="panel-body panel-table fixed-panel">
+			<table class="table table-striped table-hover">
+				<thead>
+				<tr>
+					<th class="col-md-1">#</th>
+					<th class="col-md-5">Description</th>
+					<th class="col-md-2">Amount</th>
+					<th class="col-md-2">Method</th>
+					<th class="col-md-2">Date</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr *ngFor="let payment of user.payments; let i = index;">
+					<td>{{i+1}}</td>
+					<td>{{payment.description}}</td>
+					<td>{{payment.amount_received}}</td>
+					<td>{{payment.method}}</td>
+					<td>{{payment.date | date:fullDate}}</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,29 @@
+<div style="padding: 30px">
+	<h1 class="text-center">
+	<i class="glyphicon glyphicon-user"></i>
+		Customer
+	</h1>
+	<div class="panel panel-default" id="bill-detail">
+		<div class="panel-heading">
+			Bills Detail
+		</div>
+		<div class="panel-body panel-table fixed-panel">
+			<table class="table table-striped table-hover">
+				<thead>
+				<tr>
+					<th class="col-md-1">#</th>
+					<th class="col-md-8">Customer Name</th>
+					<th class="col-md-3">Amount Due</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr *ngFor="let customer of customers; let i = index;">
+					<td>{{i+1}}</td>
+					<td>{{customer.name}}</td>
+					<td>{{customer.money_due}}</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

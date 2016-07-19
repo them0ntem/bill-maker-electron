@@ -1,0 +1,24 @@
+<div class="nav-sidebar">
+	<ul>
+		<li [class.active]="isSelectedMain(i)" (click)="selectMainTab(i)" *ngFor="let tab of mainTab; let i = index;">
+			<div>
+				<a [routerLink]="['/'+ tab.name +'/head']" routerLinkActive="active" class="main_link">
+					<i [class]=tab.icon></i>
+					<span class="help-text">{{tab.name | uppercase}}</span>
+				</a>
+			</div>
+		</li>
+	</ul>
+	<span class="vertical-text">Bill Maker<br/><span class="developer-vertical">-by Pro Creative</span></span>
+</div>
+
+<div class="nav-sub-sidebar">
+	<div style="width: 130px; background-color: #f0f0f0;" [style.height.px]="fillerHeight"></div>
+	<ul>
+		<li *ngFor="let tab of subTab">
+			<a [routerLink]="['/'+ tabName +'/' + tab.name]" routerLinkActive="active">
+				<i [class]=tab.icon></i> {{ tab.name | uppercase }}
+			</a>
+		</li>
+	</ul>
+</div>

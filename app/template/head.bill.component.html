@@ -1,0 +1,32 @@
+<div style="padding: 30px">
+	<h1 class="text-center">
+	<i class="glyphicon glyphicon-book"></i>
+		Bill
+	</h1>
+
+	<div class="panel panel-default" id="bill-detail">
+		<div class="panel-heading">
+			Bills Detail
+		</div>
+		<div class="panel-body panel-table fixed-panel">
+			<table class="table table-striped table-hover">
+				<thead>
+				<tr>
+					<th class="col-md-1">#</th>
+					<th class="col-md-6">Description</th>
+					<th class="col-md-2">Total Amount</th>
+					<th class="col-md-3">Date</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr *ngFor="let bill of bills; let i = index;">
+					<td>{{i+1}}</td>
+					<td>{{bill.description}}</td>
+					<td>{{bill.total_amount}}</td>
+					<td>{{bill.date | date:fullDate}}</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

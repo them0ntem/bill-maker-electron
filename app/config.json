@@ -1,0 +1,13 @@
+{
+  "sequence": {
+    "bill": 1,
+    "payment": 1
+  },
+  "company": {
+    "name": "",
+    "address": "",
+    "pan_no": "",
+    "mobile_no": [
+    ]
+  }
+}
