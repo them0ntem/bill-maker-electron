@@ -24,6 +24,7 @@ export class PrintBillComponent {
 	company;
 	errorMsg:boolean = false;
 	navigated:boolean = false;
+	duplicate:boolean = true;
 	sub:any;
 
 	constructor(private _billService:BillService, private _userService:UserService, private _configService:ConfigService, private _route:ActivatedRoute) { }
@@ -31,9 +32,9 @@ export class PrintBillComponent {
 	ngOnInit() {
 		this.company = this._configService.companyDetail;
 		this.sub = this._route.params.subscribe(params => {
-			if (params['id'] !== undefined) {
+			if (params['id'] !== undefined && params['duplicate'] !== undefined) {
+				this.duplicate = params['duplicate'] == "true";
 				let id:string = params['id'];
-				console.log(id);
 				this._billService.getBill(id).then((bill) => {
 					this.bill = bill;
 					this._userService.getUser(bill.customer_id).then(user => {

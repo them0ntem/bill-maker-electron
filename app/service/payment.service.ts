@@ -2,6 +2,7 @@ import { Payment } from "../model/payment.model";
 import { db } from "../db.conn";
 import { User } from "../model/user.model";
 import { ConfigService } from "./config.service";
+import {UserService} from "./user.service";
 
 export class PaymentService {
 	getPayments():Promise<Payment[]> {
@@ -92,6 +93,32 @@ export class PaymentService {
 		})
 	}
 
+    updatePayment(old_payment: Payment, payment: Payment, user: User): Promise<any> {
+        user.money_due += +old_payment.amount_received;
+		console.log(user.money_due);
+		user.money_due -= +payment.amount_received;
+        console.log(user.money_due);
+
+		console.log(user.money_due - (old_payment.amount_received - payment.amount_received));
+		return new Promise(function (resolve, reject) {
+            new UserService().updateUser(user).then(res => {
+                db.update({
+                    type: payment.type,
+                    _id: payment._id
+                }, payment, {returnUpdatedDocs: true}, function (err, numReplaced, affectedDocuments) {
+                    if (err)
+                        reject(err);
+                    else {
+                        resolve({
+                            numReplaced: numReplaced,
+                            affectedDocuments: affectedDocuments
+                        })
+                    }
+                })
+            }).catch(err => reject(err));
+        })
+    }
+
 	deletePayment(payment:Payment):Promise<any> {
 		return new Promise(function (resolve, reject) {
 			db.remove({ _id: payment._id }, {}, function (err, numRemoved) {
@@ -103,7 +130,7 @@ export class PaymentService {
 						_id: payment.customer_id
 					}, {
 						$pull: { payments: payment._id },
-						$inc: { money_due: payment.amount_received },
+						$inc: { money_due: (+payment.amount_received) },
 					}, { returnUpdatedDocs: true }, function (err, numReplaced, affectedDocuments) {
 						if (err)
 							reject(err);

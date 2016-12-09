@@ -1,0 +1,102 @@
+<div class="container-fluid">
+    <header_jumbotron [title]="'Edit Old Receipt'"></header_jumbotron>
+
+    <div class="alert alert-dismissible alert-success" *ngIf="formSubmitted && !errorMsg">
+        <button type="button" class="close" data-dismiss="alert" style="outline: none">×</button>
+        <strong>Updated!</strong> Payment Reciept Created Successfully.
+    </div>
+    <div class="alert alert-dismissible alert-danger" *ngIf="errorMsg">
+        <button type="button" class="close" data-dismiss="alert" style="outline: none">×</button>
+        <strong>Error!</strong> Problem connecting to database! Contact Developer.
+    </div>
+    <form novalidate STYLE="border-bottom: 2px dotted black; padding-bottom: 20px">
+        <fieldset>
+            <div class="form-group">
+                <div class="col-md-6 col-md-offset-2">
+                    <input type="text" class="form-control" name="payment_receipt_index"
+                           [(ngModel)]="payment_index" placeholder="Payment Receipt No.">
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" (click)="updateField(payment_index)" class="btn btn-primary btn-raised">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <form class="form-horizontal" #paymentForm="ngForm" (ngSubmit)="savePayment()" *ngIf="active" novalidate>
+        <fieldset>
+            <div class="form-group">
+                <div class="col-md-8">
+                    <input class="form-control" value="Customer Name: {{user.name}}" disabled>
+                </div>
+                <div class="col-md-4">
+                    <input class="form-control" value="Money Due: {{user.money_due}}" disabled>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputAmountReceived" class="col-md-3 control-label">Amount Received</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" [(ngModel)]="payment.amount_received"
+                           formControlName="amount_received" id="inputAmountReceived"
+                           placeholder="Amount Received">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">Method</label>
+
+                <div class="col-md-9">
+                    <div class="radio radio-primary">
+                        <label>
+                            <input type="radio" name="method" [(ngModel)]="payment.method" formControlName="method"
+                                   id="method1"
+                                   value="cash" checked="">
+                            Cash
+                        </label>
+                    </div>
+                    <div class="radio radio-primary">
+                        <label>
+                            <input type="radio" name="method" [(ngModel)]="payment.method" formControlName="method"
+                                   id="method2"
+                                   value="cheque">
+                            Cheque
+                        </label>
+                    </div>
+                    <div class="radio radio-primary">
+                        <label>
+                            <input type="radio" name="method" [(ngModel)]="payment.method" formControlName="method"
+                                   id="method3"
+                                   value="RTGS">
+                            RTGS
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputDescription" class="col-md-3 control-label">Description</label>
+                <div class="col-md-9">
+					<textarea class="form-control" [(ngModel)]="payment.description" formControlName="description"
+                              rows="3"
+                              id="inputDescription"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="inputDate" class="col-md-3 control-label">Date</label>
+                <div class="col-md-9">
+                    <input type="date" class="form-control" [(ngModel)]="payment.date" name="date" id="inputDate">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary btn-raised" [disabled]="!paymentForm.valid">Save
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

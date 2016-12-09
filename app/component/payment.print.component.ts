@@ -22,14 +22,17 @@ export class PrintPaymentComponent {
 	payment:Payment = new Payment();
 	errorMsg:boolean = false;
 	navigated:boolean = false;
+    duplicate:boolean = true;
 	sub:any;
 
 	constructor(private _paymentService:PaymentService, private _userService:UserService, private _route:ActivatedRoute) { }
 
 	ngOnInit() {
 		this.sub = this._route.params.subscribe(params => {
-			if (params['id'] !== undefined) {
+			if (params['id'] !== undefined && params['duplicate'] !== undefined) {
 				let id:string = params['id'];
+                this.duplicate = params['duplicate'] == "true";
+				console.log(params);
 				this._paymentService.getPayment(id).then((payment) => {
 					this.payment = payment;
 					return this._userService.getUser(payment.customer_id);

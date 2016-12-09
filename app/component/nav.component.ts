@@ -42,6 +42,9 @@ export class NavComponent {
 			}, {
 				name: "old",
 				icon: "glyphicon glyphicon-print"
+			}, {
+				name: "edit",
+				icon: "glyphicon glyphicon-edit"
 			},
 				{
 					name: "delete",
@@ -57,6 +60,9 @@ export class NavComponent {
 			}, {
 				name: "old",
 				icon: "glyphicon glyphicon-print"
+			}, {
+				name: "edit",
+				icon: "glyphicon glyphicon-edit"
 			},
 				{
 					name: "delete",
@@ -69,7 +75,7 @@ export class NavComponent {
 			sub_tab: []
 		}
 	};
-	
+
 	selectMainTab(setTab:number) {
 		this.tab = setTab;
 	};

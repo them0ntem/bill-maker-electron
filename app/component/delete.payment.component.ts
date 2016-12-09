@@ -21,6 +21,7 @@ export class DeletePaymentComponent {
 	errorMsg:boolean = false;
 	paymentDeleted:boolean = false;
 	paymentForm:FormGroup;
+	payment:Payment;
 
 	constructor(private _paymentService:PaymentService, private _formBuilder:FormBuilder) { }
 
@@ -30,10 +31,24 @@ export class DeletePaymentComponent {
 		});
 	}
 
+	getPaymentDetail() {
+		console.log(this.paymentForm.value.payment_index);
+		this._paymentService.getPaymentIndex(this.paymentForm.value.payment_index).then((res) => {
+            this.errorMsg = false;
+            this.payment = res;
+        }).catch((err) => {
+            this.paymentFound = err.status == -1;
+            this.errorMsg = true;
+            this.paymentDeleted = false;
+        });
+    }
+
 	deletePayment() {
 		this._paymentService.deletePaymentIndex(this.paymentForm.value.payment_index).then((res) => {
 			this.errorMsg = false;
 			this.paymentDeleted = true;
+            this.payment = null;
+            this.ngOnInit();
 		}).catch((err)=> {
 			this.paymentFound = err.status == -1;
 			this.errorMsg = true;

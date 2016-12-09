@@ -1,13 +1,15 @@
 {
   "sequence": {
-    "bill": 1,
-    "payment": 1
+    "bill": 6,
+    "payment": 5
   },
   "company": {
-    "name": "",
-    "address": "",
-    "pan_no": "",
+    "name": "K.L. Gupta (Advocate)",
+    "address": "F-296(D), Industrial Area,\nNear Bank of Baroda, Bhiwadi",
+    "pan_no": "ABPPG3942F",
     "mobile_no": [
+      "+91-9414021000",
+      "+91-9950221000"
     ]
   }
 }

@@ -27,13 +27,14 @@ export class OldBillComponent {
 	ngOnInit() {
 		this.billForm = this._formBuilder.group({
 			index: ['', [Validators.pattern('[0-9]{1,}'), Validators.required]],
+			duplicate: [true]
 		});
 	}
 
 	printOldBill() {
 		this._billService.getBillIndex(this.billForm.value.index).then((res) => {
 			console.log(res);
-			electron.ipcRenderer.send('open-bill-print-window', res._id);
+			electron.ipcRenderer.send('open-bill-print-window', res._id, this.billForm.value.duplicate);
 			this.errorMsg = false
 		}).catch((err)=> {
 			if (err.status == -1)

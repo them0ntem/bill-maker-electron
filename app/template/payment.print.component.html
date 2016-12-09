@@ -1,57 +1,58 @@
 <div id="body">
-	<div id="print-btn">
-		<button class="btn btn-raised btn-primary" (click)="printBtn()">Print Receipt</button>
-	</div>
-	<div *ngIf="!errorMsg" id="receipt">
-		<header class="clearfix">
-			<div id="logo"><img src="app/asset/logo.png"></div>
-			<div id="company"><h2 class="name">K.L. Gupta (Advocate)</h2>
-				<div>F-296(D), Industrial Area</div>
-				<div>Near Bank of Baroda, Bhiwadi</div>
-				<div>Pan No. ABPPG3942F</div>
-				<div>#+91-9414021000</div>
-				<div>#+91-9950221000</div>
-			</div>
-		</header>
-		<main>
-			<div id="details" class="clearfix">
-				<div id="client">
-					<div class="to">Payment Received with thanks from:</div>
-					<h2 class="name">{{user.name}}</h2>
-					<div class="address">{{user.address}}</div>
-					<div>{{user.mobile_no}}</div>
-				</div>
-				<div id="invoice">
-					<h1>Receipt No. {{payment.index}}</h1>
-					<div class="date">Date of Invoice: {{payment.date | date}}</div>
-				</div>
-			</div>
-			<h3>PAYMENT RECEIPT</h3>
-			<table border="1" cellspacing="0" cellpadding="0">
-				<tbody>
-				<tr>
-					<td>Payment Method :</td>
-					<td>{{payment.method | uppercase}}</td>
-				</tr>
-				<tr>
-					<td>Amount Received :</td>
-					<td>Rs . {{payment.amount_received}}</td>
-				</tr>
-				<tr>
-					<td>Balance Due as on {{currentDate | date}}:</td>
-					<td>Rs . {{user.money_due}}</td>
-				</tr>
-				<tr>
-					<td colspan="2">IN WORDS : {{payment.amount_received | toWords | uppercase}}</td>
-				</tr>
-				</tbody>
-			</table>
-			<div id="thanks">Thank you!</div>
-			<div id="notices">
-				<div>Description:</div>
-				<div class="notice" style="white-space: pre-line">{{payment.description}}</div>
-			</div>
-		</main>
-		<footer> Invoice was created on a computer and is valid without the signature and seal.</footer>
-	</div>
+    <div id="print-btn">
+        <button class="btn btn-raised btn-primary" (click)="printBtn()">Print Receipt</button>
+    </div>
+    <div *ngIf="!errorMsg" id="receipt">
+        <h3 style="border-bottom: none; text-align: center;" *ngIf="duplicate">DUPLICATE</h3>
+        <header class="clearfix">
+            <div id="logo"><img src="app/asset/logo.png"></div>
+            <div id="company"><h2 class="name">K.L. Gupta (Advocate)</h2>
+                <div>F-296(D), Industrial Area</div>
+                <div>Near Bank of Baroda, Bhiwadi</div>
+                <div>Pan No. ABPPG3942F</div>
+                <div>#+91-9414021000</div>
+                <div>#+91-9950221000</div>
+            </div>
+        </header>
+        <main>
+            <div id="details" class="clearfix">
+                <div id="client">
+                    <div class="to">Payment Received with thanks from:</div>
+                    <h2 class="name">{{user.name}}</h2>
+                    <div class="address">{{user.address}}</div>
+                    <div>{{user.mobile_no}}</div>
+                </div>
+                <div id="invoice">
+                    <h1>Receipt No. {{payment.index}}</h1>
+                    <div class="date">Date of Invoice: {{payment.date | date}}</div>
+                </div>
+            </div>
+            <h3>PAYMENT RECEIPT</h3>
+            <table border="1" cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    <td>Payment Method :</td>
+                    <td>{{payment.method | uppercase}}</td>
+                </tr>
+                <tr>
+                    <td>Amount Received :</td>
+                    <td>Rs . {{payment.amount_received}}</td>
+                </tr>
+                <tr>
+                    <td>Balance Due as on {{currentDate | date}}:</td>
+                    <td>Rs . {{user.money_due}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">IN WORDS : {{payment.amount_received | toWords | uppercase}}</td>
+                </tr>
+                </tbody>
+            </table>
+            <div id="thanks">Thank you!</div>
+            <div id="notices">
+                <div>Description:</div>
+                <div class="notice" style="white-space: pre-line">{{payment.description}}</div>
+            </div>
+        </main>
+        <footer> Invoice was created on a computer and is valid without the signature and seal.</footer>
+    </div>
 </div>

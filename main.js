@@ -10,7 +10,9 @@ function createWindow() {
 		resizable: false
 	});
 	mainWindow.loadURL("file://" + __dirname + "/index.html");
-	// mainWindow.webContents.openDevTools();
+
+    if (process.defaultApp || /[\\/]electron-prebuilt[\\/]/.test(process.execPath) || /[\\/]electron[\\/]/.test(process.execPath))
+        mainWindow.webContents.openDevTools();
 	mainWindow.on('closed', function () {
 		mainWindow = null;
 	});
@@ -30,7 +32,7 @@ electron.app.on('activate', function () {
 	}
 });
 
-electron.ipcMain.on('open-bill-print-window', function (event, arg) {
+electron.ipcMain.on('open-bill-print-window', function (event, id, duplicate) {
 	if (printWindow) {
 		return;
 	}
@@ -39,7 +41,7 @@ electron.ipcMain.on('open-bill-print-window', function (event, arg) {
 		width: 850,
 		resizable: false
 	});
-	printWindow.loadURL("file://" + __dirname + "/index.html#/bill/print/" + arg);
+	printWindow.loadURL("file://" + __dirname + "/index.html#/bill/print/" + id + "/" + duplicate);
 	printWindow.on('closed', function () {
 		printWindow = null;
 	});
@@ -52,7 +54,7 @@ electron.ipcMain.on('bill-print', function (event, arg) {
 	printWindow.webContents.print();
 });
 
-electron.ipcMain.on('open-payment-print-window', function (event, arg) {
+electron.ipcMain.on('open-payment-print-window', function (event, id, duplicate) {
 	if (printWindow) {
 		return;
 	}
@@ -61,7 +63,7 @@ electron.ipcMain.on('open-payment-print-window', function (event, arg) {
 		width: 850,
 		resizable: false,
 	});
-	printWindow.loadURL("file://" + __dirname + "/index.html#/payment/print/" + arg);
+	printWindow.loadURL("file://" + __dirname + "/index.html#/payment/print/" + id + "/" + duplicate);
 	printWindow.on('closed', function () {
 		printWindow = null;
 	});

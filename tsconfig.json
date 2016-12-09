@@ -11,6 +11,7 @@
 		"sourceMap": true
 	},
 	"exclude": [
+		"bill-maker-darwin-x64",
 		"bill-maker-win32-ia32",
 		"bill-maker-win32-x64",
 		"node_modules"

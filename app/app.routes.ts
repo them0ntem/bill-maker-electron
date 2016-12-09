@@ -15,8 +15,10 @@ import { HeadBillComponent } from "./component/head.bill.component";
 import { HeadAppComponent } from "./component/head.app.component";
 import { HeadPaymentComponent } from "./component/head.payment.component";
 import { HeadSettingComponent } from "./component/head.settings.component";
+import {EditBillComponent} from "./component/edit.bill.component";
+import {EditPaymentComponent} from "./component/edit.payment.component";
 
-const routes:RouterConfig = [
+const routes = [
 	{
 		path: 'menu/head',
 		component: HeadAppComponent
@@ -39,13 +41,16 @@ const routes:RouterConfig = [
 		path: 'bill/create',
 		component: CreateBillComponent
 	}, {
+		path: 'bill/edit',
+		component: EditBillComponent
+	}, {
 		path: 'bill/old',
 		component: OldBillComponent
 	}, {
 		path: 'bill/delete',
 		component: DeleteBillComponent
 	}, {
-		path: 'bill/print/:id',
+		path: 'bill/print/:id/:duplicate',
 		component: PrintBillComponent
 	}, {
 		path: 'payment/create',
@@ -57,10 +62,13 @@ const routes:RouterConfig = [
 		path: 'payment/old',
 		component: OldPaymentComponent
 	}, {
+		path: 'payment/edit',
+		component: EditPaymentComponent
+	}, {
 		path: 'payment/delete',
 		component: DeletePaymentComponent
 	}, {
-		path: 'payment/print/:id',
+		path: 'payment/print/:id/:duplicate',
 		component: PrintPaymentComponent
 	}, {
 		path: 'settings/head',

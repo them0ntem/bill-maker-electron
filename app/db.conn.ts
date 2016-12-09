@@ -1,4 +1,11 @@
-declare var nedb:any;
-export var db = new nedb({ filename: './app/collection.data', autoload: true });
-// var nedb = require('nedb');
-// export var db = new nedb({ filename: './collection.data', autoload: true });
+import {isDev} from "./isDev";
+declare let nedb: any;
+
+let db_path: string;
+
+if (isDev)
+    db_path = `./app/collection.data`;
+else
+    db_path = `${process.resourcesPath}/data/collection.data`;
+
+export let db = new nedb({filename: db_path, autoload: true});

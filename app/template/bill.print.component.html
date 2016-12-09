@@ -3,6 +3,7 @@
 		<button class="btn btn-raised btn-primary" (click)="printBtn()">Print Bill</button>
 	</div>
 	<div *ngIf="!errorMsg" id="bill">
+        <h3 style="border-bottom: none; text-align: center;" *ngIf="duplicate">DUPLICATE</h3>
 		<header class="clearfix">
 			<div id="logo"><img src="app/asset/logo.png"></div>
 			<div id="company"><h2 class="name">{{company.name}}</h2>

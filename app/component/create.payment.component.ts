@@ -16,7 +16,7 @@ declare var fs:any;
 	moduleId: module.id,
 	templateUrl: '../template/create.payment.component.html',
 	directives: [HeaderComponent, ROUTER_DIRECTIVES, REACTIVE_FORM_DIRECTIVES],
-	styleUrls: ['../css/create.payment.component.css'],
+	styleUrls: ['../css/edit.payment.component.css'],
 	providers: [FormBuilder]
 })
 
@@ -65,7 +65,7 @@ export class CreatePaymentComponent {
 				this.ngOnInit();
 				this.active = true;
 				this.errorMsg = false;
-				electron.ipcRenderer.send('open-payment-print-window', res._id);
+				electron.ipcRenderer.send('open-payment-print-window', res._id, false);
 			}).catch((err) => {
 				this.errorMsg = true;
 				this.active = true;

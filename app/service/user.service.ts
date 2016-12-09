@@ -87,7 +87,6 @@ export class UserService {
 			})
 		})
 	}
-	;
 
 	compactUser(user:User):User {
 		let bills_string:string[] = [], payments_string:string[] = [];

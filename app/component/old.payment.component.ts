@@ -26,12 +26,13 @@ export class OldPaymentComponent {
 	ngOnInit() {
 		this.paymentForm = this._formBuilder.group({
 			payment_index: ['', [Validators.pattern('[0-9]{1,}'), Validators.required]],
+            duplicate: [true]
 		});
 	}
 
 	printOldPayment() {
 		this._paymentService.getPaymentIndex(this.paymentForm.value.payment_index).then((res) => {
-			electron.ipcRenderer.send('open-payment-print-window', res._id);
+			electron.ipcRenderer.send('open-payment-print-window', res._id, this.paymentForm.value.duplicate);
 			this.errorMsg = false
 		}).catch((err)=> {
 			if (err.status == -1)
